@@ -1,0 +1,12 @@
+{
+  "version": 8,
+  "name": "Geocatalog Blank",
+  "sources": {},
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#eef3f7" }
+    }
+  ]
+}

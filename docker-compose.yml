@@ -1,0 +1,61 @@
+name: geocatalog-explorer
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: geocatalog-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-geocatalog}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-geocatalog_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-geocatalog}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - geocatalog_pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-geocatalog} -d ${POSTGRES_DB:-geocatalog}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: geocatalog-backend
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: ${POSTGRES_USER:-geocatalog}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-geocatalog_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-geocatalog}
+      BACKEND_PORT: 3000
+      NODE_ENV: production
+    ports:
+      - "${BACKEND_PORT:-3000}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:3000/api/v1}
+    container_name: geocatalog-frontend
+    environment:
+      BACKEND_HOST: backend
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  geocatalog_pgdata:
+    name: geocatalog_pgdata
