@@ -41,6 +41,23 @@
         { "name": "type", "alias": "Type", "type": "text", "nullable": false },
         { "name": "capacity", "alias": "Capacity", "type": "number", "nullable": true }
       ]
+    },
+    {
+      "slug": "hk-fire-stations",
+      "title": "Hong Kong Fire Stations",
+      "description": "Public fire station locations for Hong Kong (Fire Services Department), including bilingual names, addresses, district, and contact details. Source: open Hong Kong government open-data portal.",
+      "theme": "Public Safety",
+      "publisher": "Hong Kong Fire Services Department",
+      "license": "Open data — see Hong Kong government open-data portal terms",
+      "tags": ["fire", "station", "hong-kong", "safety", "point"],
+      "fields": [
+        { "name": "FSDID", "alias": "FSD ID", "type": "text", "nullable": false },
+        { "name": "Name_ENG", "alias": "Name (English)", "type": "text", "nullable": false },
+        { "name": "Name_TC", "alias": "Name (繁體中文)", "type": "text", "nullable": false },
+        { "name": "District_ENG", "alias": "District (English)", "type": "text", "nullable": true },
+        { "name": "Address_ENG", "alias": "Address (English)", "type": "text", "nullable": true },
+        { "name": "Telephone", "alias": "Telephone", "type": "text", "nullable": true }
+      ]
     }
   ]
 }
