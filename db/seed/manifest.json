@@ -1,0 +1,46 @@
+{
+  "datasets": [
+    {
+      "slug": "flood-risk-zones",
+      "title": "Flood Risk Zones",
+      "description": "Synthetic polygon dataset representing broad flood-risk categories for a small demo area. Polygons do not correspond to any real flood model.",
+      "theme": "Environment",
+      "publisher": "Demo GIS Team",
+      "license": "Synthetic demo data — not for operational use",
+      "tags": ["flood", "risk", "environment", "polygon"],
+      "fields": [
+        { "name": "zone_id", "alias": "Zone ID", "type": "text", "nullable": false },
+        { "name": "risk_level", "alias": "Risk Level", "type": "text", "nullable": false },
+        { "name": "area_km2", "alias": "Approx. Area (km²)", "type": "number", "nullable": true }
+      ]
+    },
+    {
+      "slug": "fire-stations",
+      "title": "Fire Stations",
+      "description": "Synthetic point dataset of fictional fire station locations used purely for demonstration. No real facility locations are included.",
+      "theme": "Public Safety",
+      "publisher": "Demo GIS Team",
+      "license": "Synthetic demo data — not for operational use",
+      "tags": ["fire", "station", "safety", "point"],
+      "fields": [
+        { "name": "station_id", "alias": "Station ID", "type": "text", "nullable": false },
+        { "name": "status", "alias": "Status", "type": "text", "nullable": false },
+        { "name": "staff", "alias": "Staff Count", "type": "number", "nullable": true }
+      ]
+    },
+    {
+      "slug": "public-facilities",
+      "title": "Public Facilities",
+      "description": "Synthetic mixed-use point dataset of fictional community facilities (libraries, community centres, sports halls). Used purely for demonstration.",
+      "theme": "Community",
+      "publisher": "Demo GIS Team",
+      "license": "Synthetic demo data — not for operational use",
+      "tags": ["community", "facility", "point"],
+      "fields": [
+        { "name": "facility_id", "alias": "Facility ID", "type": "text", "nullable": false },
+        { "name": "type", "alias": "Type", "type": "text", "nullable": false },
+        { "name": "capacity", "alias": "Capacity", "type": "number", "nullable": true }
+      ]
+    }
+  ]
+}

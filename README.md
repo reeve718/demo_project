@@ -42,7 +42,11 @@ Postgres directly.
 - **Consistent API envelopes** for success and error responses, plus a
   request-id correlation header
 - **Swagger / OpenAPI** documentation at `/api/docs`
-- **Docker Compose** orchestration for db, backend, and frontend
+- **Docker Compose** orchestration for db, seed, backend, and frontend
+- **File-based seed loader** — drop your own public-data GeoJSON files in
+  `db/seed/` and a one-shot `seed` service populates the database on every
+  start (idempotent). See [db/seed/README.md](db/seed/README.md) for the
+  format.
 
 ---
 
@@ -53,7 +57,7 @@ Postgres directly.
 | Frontend | Vue 3 (Composition API, `<script setup>`), Vite, TypeScript, Vue Router, Pinia, MapLibre GL JS, Vitest, Vue Test Utils, Axios |
 | Backend | NestJS, TypeORM, class-validator, class-transformer, Swagger, Jest, Supertest |
 | Database | PostgreSQL 16 with PostGIS 3.4 (GiST + B-tree + GIN indexes) |
-| Tooling | Docker Compose, nginx (frontend runtime) |
+| Tooling | Docker Compose, nginx (frontend runtime), Node seed loader |
 
 ---
 
@@ -83,11 +87,17 @@ geocatalog-explorer/
 │   ├── test-plan.md
 │   └── decisions.md
 ├── db/
-│   └── init/
-│       ├── 01-schema.sql
-│       └── 02-seed-data.sql
+│   ├── init/
+│   │   ├── 01-schema.sql
+│   │   └── 02-seed-data.sql   # placeholder; real seed comes from db/seed/
+│   └── seed/
+│       ├── README.md           # public-data format spec
+│       ├── manifest.json
+│       └── datasets/           # one GeoJSON per dataset
 ├── backend/
 │   ├── Dockerfile
+│   ├── scripts/
+│   │   └── seed-public-data.mjs # one-shot loader for db/seed/
 │   ├── src/
 │   │   ├── common/             # request id, logging, exception filter
 │   │   ├── datasets/           # catalogue module
@@ -208,6 +218,43 @@ are under `/api/v1` and use the following envelopes:
 
 Status codes: `200`, `400`, `404`, `500`, `503`. Stack traces are never
 exposed to clients.
+
+---
+
+## 8a. Adding your own public data
+
+The seed data is loaded by a one-shot `seed` service that runs after the
+database is healthy. It reads files from `db/seed/`:
+
+```
+db/seed/
+├── manifest.json                  ← dataset metadata (one file)
+├── README.md                      ← format spec
+└── datasets/
+    └── <slug>.geojson             ← GeoJSON FeatureCollection per dataset
+```
+
+To swap in real public data:
+
+1. Edit [db/seed/manifest.json](db/seed/manifest.json) — list your datasets
+   with `slug`, `title`, `description`, `theme`, `publisher`, `license`,
+   `tags`, and `fields`.
+2. Drop your GeoJSON files into [db/seed/datasets/](db/seed/datasets/),
+   one per `slug`. Each file must be a valid GeoJSON FeatureCollection in
+   WGS84.
+3. Restart the stack:
+
+   ```bash
+   docker compose up --build
+   ```
+
+The loader is idempotent: re-running swaps the data cleanly. Existing
+dataset metadata is updated, and each dataset's features are replaced
+wholesale.
+
+For the full format spec (including which `properties` keys become
+attribute columns on the feature detail panel), see
+[db/seed/README.md](db/seed/README.md).
 
 ---
 
