@@ -4,10 +4,17 @@ import type { ApiError } from '../types';
 
 /**
  * Base URL for the API. Vite injects `import.meta.env.VITE_API_BASE_URL`
- * at build time. Defaults to the local backend exposed during development.
+ * at build time.
+ *
+ * The default is a relative `/api/v1` so the request is routed through the
+ * same origin (nginx proxies it to the backend container in production /
+ * docker). This avoids CORS issues without requiring any backend changes.
+ *
+ * For development against a standalone backend on a different port, set
+ * VITE_API_BASE_URL=http://localhost:3000/api/v1.
  */
 const baseURL =
-  (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? 'http://localhost:3000/api/v1';
+  (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? '/api/v1';
 
 /**
  * Public configuration read by tests so they can stub the base URL.

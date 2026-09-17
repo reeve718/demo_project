@@ -21,6 +21,17 @@ async function bootstrap(): Promise<void> {
     }),
   );
 
+  // Enable CORS so the frontend can call the API directly when
+  // VITE_API_BASE_URL is set to an absolute URL (development setup).
+  // The default Docker setup uses a relative URL and nginx proxies the
+  // request, which does not need CORS.
+  app.enableCors({
+    origin: true,
+    credentials: false,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-Id'],
+  });
+
   // Global filter to normalise error envelopes.
   app.useGlobalFilters(app.get(AllExceptionsFilter));
 
