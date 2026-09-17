@@ -1,0 +1,10 @@
+# Screenshots
+
+This directory is reserved for visual snapshots of the running application.
+
+The MVP does not include pre-generated screenshots. To add them locally:
+
+1. Run `docker compose up --build`.
+2. Open the frontend at http://localhost:5173.
+3. Capture each route (/datasets, /datasets/:slug, /map, /about).
+4. Save the PNG/JPG files in this folder.
