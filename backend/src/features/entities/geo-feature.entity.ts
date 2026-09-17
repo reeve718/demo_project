@@ -38,7 +38,7 @@ export class GeoFeature {
   @Column({ type: 'jsonb', default: () => "'{}'::jsonb" })
   properties!: Record<string, unknown>;
 
-  @Column({ type: 'geometry(GEOMETRY,4326)' })
+  @Column({ type: 'geometry', spatialFeatureType: 'Geometry', srid: 4326 })
   geom!: unknown;
 
   @Column({ name: 'created_at', type: 'timestamptz', default: () => 'now()' })

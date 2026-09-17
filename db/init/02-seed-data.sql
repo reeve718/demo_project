@@ -59,9 +59,13 @@ ON CONFLICT DO NOTHING;
 
 -- Refresh dataset bbox from its features (defensive — covers schema drift).
 UPDATE datasets d
-SET bbox = ST_Envelope(ST_Collect(f.geom))
-FROM geo_features f
-WHERE f.dataset_id = d.id AND d.slug = 'flood-risk-zones';
+SET bbox = sub.bbox
+FROM (
+  SELECT dataset_id, ST_Envelope(ST_Collect(geom)) AS bbox
+  FROM geo_features
+  GROUP BY dataset_id
+) sub
+WHERE d.id = sub.dataset_id AND d.slug = 'flood-risk-zones';
 
 -- -----------------------------------------------------------------------------
 -- Dataset 2: Fire Stations (Public Safety theme, points)
@@ -99,9 +103,13 @@ WHERE d.slug = 'fire-stations'
 ON CONFLICT DO NOTHING;
 
 UPDATE datasets d
-SET bbox = ST_Envelope(ST_Collect(f.geom))
-FROM geo_features f
-WHERE f.dataset_id = d.id AND d.slug = 'fire-stations';
+SET bbox = sub.bbox
+FROM (
+  SELECT dataset_id, ST_Envelope(ST_Collect(geom)) AS bbox
+  FROM geo_features
+  GROUP BY dataset_id
+) sub
+WHERE d.id = sub.dataset_id AND d.slug = 'fire-stations';
 
 -- -----------------------------------------------------------------------------
 -- Dataset 3: Public Facilities (Community theme, points)
@@ -139,6 +147,10 @@ WHERE d.slug = 'public-facilities'
 ON CONFLICT DO NOTHING;
 
 UPDATE datasets d
-SET bbox = ST_Envelope(ST_Collect(f.geom))
-FROM geo_features f
-WHERE f.dataset_id = d.id AND d.slug = 'public-facilities';
+SET bbox = sub.bbox
+FROM (
+  SELECT dataset_id, ST_Envelope(ST_Collect(geom)) AS bbox
+  FROM geo_features
+  GROUP BY dataset_id
+) sub
+WHERE d.id = sub.dataset_id AND d.slug = 'public-facilities';

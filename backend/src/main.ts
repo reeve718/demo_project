@@ -1,5 +1,5 @@
 import { Logger, RequestMethod, ValidationPipe } from '@nestjs/common';
-import { NestFactory, Reflector } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AllExceptionsFilter } from './common/all-exceptions.filter';
@@ -25,7 +25,7 @@ async function bootstrap(): Promise<void> {
   app.useGlobalFilters(app.get(AllExceptionsFilter));
 
   // Lightweight access logging.
-  app.useGlobalInterceptors(new LoggingInterceptor(app.get(Reflector)));
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   // API global prefix for everything except Swagger's documentation paths.
   app.setGlobalPrefix('api/v1', {

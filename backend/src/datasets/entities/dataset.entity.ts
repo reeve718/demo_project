@@ -40,7 +40,7 @@ export class Dataset {
   @Column({ name: 'created_at', type: 'timestamptz', default: () => 'now()' })
   createdAt!: Date;
 
-  @Column({ type: 'geometry(POLYGON,4326)' })
+  @Column({ type: 'geometry', spatialFeatureType: 'Polygon', srid: 4326 })
   bbox!: unknown;
 
   @Column({ type: 'jsonb', default: () => "'[]'::jsonb" })

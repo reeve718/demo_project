@@ -247,7 +247,13 @@ function extractCoords(geom: GeoJSON.Geometry): [number, number][] {
       n.forEach(walk);
     }
   };
-  walk(geom.coordinates);
+  // GeometryCollection nests an array of geometries; every other type has a
+  // `coordinates` field. Handle both shapes uniformly.
+  if (geom.type === 'GeometryCollection') {
+    geom.geometries.forEach((g) => walk(extractCoords(g) as unknown));
+  } else {
+    walk((geom as Extract<GeoJSON.Geometry, { coordinates: unknown }>).coordinates);
+  }
   return out;
 }
 

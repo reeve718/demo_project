@@ -15,7 +15,7 @@
     "useDefineForClassFields": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client", "vitest/globals", "@types/maplibre-gl"],
+    "types": ["vite/client", "vitest/globals"],
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
