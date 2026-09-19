@@ -33,6 +33,72 @@
         { "name": "Address_ENG", "alias": "Address (English)", "type": "text", "nullable": true },
         { "name": "Telephone", "alias": "Telephone", "type": "text", "nullable": true }
       ]
+    },
+    {
+      "slug": "Private-Primary-Schools",
+      "title": "Hong Kong Private Primary Schools",
+      "description": "Private primary school locations in Hong Kong (Education Bureau), including bilingual names, addresses, district, session type, religion, contact details and website. Source: open Hong Kong government open-data portal.",
+      "theme": "Education",
+      "publisher": "Education Bureau, Hong Kong SAR Government",
+      "license": "Open data — see Hong Kong government open-data portal terms",
+      "tags": ["school", "primary", "private", "education", "hong-kong", "point"],
+      "fields": [
+        { "name": "NAME_EN", "alias": "School Name (English)", "type": "text", "nullable": false },
+        { "name": "NAME_TC", "alias": "School Name (繁體中文)", "type": "text", "nullable": false },
+        { "name": "ADDRESS_EN", "alias": "Address (English)", "type": "text", "nullable": true },
+        { "name": "ADDRESS_TC", "alias": "Address (繁體中文)", "type": "text", "nullable": true },
+        { "name": "SEARCH03_EN", "alias": "District", "type": "text", "nullable": true },
+        { "name": "SEARCH01_EN", "alias": "Gender", "type": "text", "nullable": true },
+        { "name": "SEARCH02_EN", "alias": "Session", "type": "text", "nullable": true },
+        { "name": "NSEARCH01_EN", "alias": "Religion", "type": "text", "nullable": true },
+        { "name": "NSEARCH02_EN", "alias": "Telephone", "type": "text", "nullable": true },
+        { "name": "NSEARCH03_EN", "alias": "Fax", "type": "text", "nullable": true },
+        { "name": "NSEARCH04_EN", "alias": "Website", "type": "text", "nullable": true }
+      ]
+    },
+    {
+      "slug": "Government-Primary-Schools",
+      "title": "Hong Kong Government Primary Schools",
+      "description": "Government (官立) primary school locations in Hong Kong (Education Bureau), including bilingual names, addresses, district, session type, religion, contact details and website. Source: open Hong Kong government open-data portal.",
+      "theme": "Education",
+      "publisher": "Education Bureau, Hong Kong SAR Government",
+      "license": "Open data — see Hong Kong government open-data portal terms",
+      "tags": ["school", "primary", "government", "education", "hong-kong", "point"],
+      "fields": [
+        { "name": "NAME_EN", "alias": "School Name (English)", "type": "text", "nullable": false },
+        { "name": "NAME_TC", "alias": "School Name (繁體中文)", "type": "text", "nullable": false },
+        { "name": "ADDRESS_EN", "alias": "Address (English)", "type": "text", "nullable": true },
+        { "name": "ADDRESS_TC", "alias": "Address (繁體中文)", "type": "text", "nullable": true },
+        { "name": "SEARCH03_EN", "alias": "District", "type": "text", "nullable": true },
+        { "name": "SEARCH01_EN", "alias": "Gender", "type": "text", "nullable": true },
+        { "name": "SEARCH02_EN", "alias": "Session", "type": "text", "nullable": true },
+        { "name": "NSEARCH01_EN", "alias": "Religion", "type": "text", "nullable": true },
+        { "name": "NSEARCH02_EN", "alias": "Telephone", "type": "text", "nullable": true },
+        { "name": "NSEARCH03_EN", "alias": "Fax", "type": "text", "nullable": true },
+        { "name": "NSEARCH04_EN", "alias": "Website", "type": "text", "nullable": true }
+      ]
+    },
+    {
+      "slug": "Aided-Primary-Schools",
+      "title": "Hong Kong Aided Primary Schools",
+      "description": "Aided (資助) primary school locations in Hong Kong (Education Bureau), including bilingual names, addresses, district, session type, religion, contact details and website. Source: open Hong Kong government open-data portal.",
+      "theme": "Education",
+      "publisher": "Education Bureau, Hong Kong SAR Government",
+      "license": "Open data — see Hong Kong government open-data portal terms",
+      "tags": ["school", "primary", "aided", "education", "hong-kong", "point"],
+      "fields": [
+        { "name": "NAME_EN", "alias": "School Name (English)", "type": "text", "nullable": false },
+        { "name": "NAME_TC", "alias": "School Name (繁體中文)", "type": "text", "nullable": false },
+        { "name": "ADDRESS_EN", "alias": "Address (English)", "type": "text", "nullable": true },
+        { "name": "ADDRESS_TC", "alias": "Address (繁體中文)", "type": "text", "nullable": true },
+        { "name": "SEARCH03_EN", "alias": "District", "type": "text", "nullable": true },
+        { "name": "SEARCH01_EN", "alias": "Gender", "type": "text", "nullable": true },
+        { "name": "SEARCH02_EN", "alias": "Session", "type": "text", "nullable": true },
+        { "name": "NSEARCH01_EN", "alias": "Religion", "type": "text", "nullable": true },
+        { "name": "NSEARCH02_EN", "alias": "Telephone", "type": "text", "nullable": true },
+        { "name": "NSEARCH03_EN", "alias": "Fax", "type": "text", "nullable": true },
+        { "name": "NSEARCH04_EN", "alias": "Website", "type": "text", "nullable": true }
+      ]
     }
   ]
 }

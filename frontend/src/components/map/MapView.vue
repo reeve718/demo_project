@@ -26,6 +26,17 @@ const emit = defineEmits<{
 
 const mapContainer = ref<HTMLDivElement | null>(null);
 let map: MapLibreMap | null = null;
+let mapLoaded = false;
+
+// Debug overlay state — only rendered when `?debug=1` is in the URL.
+const debugEnabled = ref<boolean>(false);
+const debugSummary = ref<string>('');
+
+function refreshDebug() {
+  if (!debugEnabled.value) return;
+  const slugs = props.layers.map((l) => `${l.slug}:${l.features.length}`).join(' | ') || '(none)';
+  debugSummary.value = `map:${mapLoaded ? 'loaded' : 'init'} layers:${slugs}`;
+}
 
 // Per-slug bookkeeping: source id + the three sublayer ids + click handler
 // refs so we can clean everything up atomically when a layer is removed.
@@ -51,9 +62,15 @@ function pointLayerFor(slug: string) {
 }
 
 function toFeatureCollection(slug: string, features: GeoFeature[]): GeoJSON.FeatureCollection {
+  // Strip any feature without a usable geometry — MapLibre throws on null
+  // geometry, and the backend can return features with missing geometries
+  // for rows that have a NULL geom column.
+  const clean = features.filter(
+    (f) => f && f.geometry && (f.geometry as { type?: string }).type,
+  );
   return {
     type: 'FeatureCollection',
-    features: features.map((f) => ({
+    features: clean.map((f) => ({
       type: 'Feature',
       id: f.id,
       geometry: f.geometry,
@@ -77,13 +94,18 @@ function upsertLayer(layer: LayerDescriptor) {
     };
     handles.set(layer.slug, h);
 
-    map.addSource(sourceId, { type: 'geojson', data: fc });
+    try {
+      map.addSource(sourceId, { type: 'geojson', data: fc });
+    } catch (err) {
+      console.error('MapLibre addSource failed for', layer.slug, err);
+      return;
+    }
 
     map.addLayer({
       id: h.fillLayer,
       type: 'fill',
       source: sourceId,
-      filter: ['==', ['geometry-type'], 'Polygon'],
+      filter: ['==', '$type', 'Polygon'],
       paint: {
         'fill-color': layer.color,
         'fill-opacity': 0.25,
@@ -93,14 +115,14 @@ function upsertLayer(layer: LayerDescriptor) {
       id: h.lineLayer,
       type: 'line',
       source: sourceId,
-      filter: ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'LineString']],
+      filter: ['any', ['==', '$type', 'Polygon'], ['==', '$type', 'LineString']],
       paint: { 'line-color': layer.color, 'line-width': 1.5 },
     });
     map.addLayer({
       id: h.pointLayer,
       type: 'circle',
       source: sourceId,
-      filter: ['==', ['geometry-type'], 'Point'],
+      filter: ['==', '$type', 'Point'],
       paint: {
         'circle-radius': 6,
         'circle-color': layer.color,
@@ -137,8 +159,12 @@ function upsertLayer(layer: LayerDescriptor) {
     map.on('mouseenter', h.fillLayer, () => setCursor('pointer'));
     map.on('mouseleave', h.fillLayer, () => setCursor(''));
   } else {
-    const source = map.getSource(sourceId) as maplibregl.GeoJSONSource | undefined;
-    if (source) source.setData(fc);
+    try {
+      const source = map.getSource(sourceId) as maplibregl.GeoJSONSource | undefined;
+      if (source) source.setData(fc);
+    } catch (err) {
+      console.error('MapLibre setData failed for', layer.slug, err);
+    }
   }
 
   setLayerVisibility(layer.slug, layer.visible);
@@ -219,6 +245,9 @@ function emitBbox() {
 
 onMounted(async () => {
   if (!mapContainer.value) return;
+  debugEnabled.value =
+    typeof window !== 'undefined' &&
+    new URLSearchParams(window.location.search).get('debug') === '1';
   try {
     map = new maplibregl.Map({
       container: mapContainer.value,
@@ -237,6 +266,7 @@ onMounted(async () => {
 
   map.on('load', () => {
     if (!map) return;
+    mapLoaded = true;
     syncLayers();
     applyHighlight();
     emit('map-ready');
@@ -249,10 +279,16 @@ onMounted(async () => {
 watch(
   () => props.layers,
   () => {
+    // Defer sync until the map style has finished loading. addSource/addLayer
+    // throw if called before that, and any features that arrived in the
+    // meantime will be applied by the load handler above (which runs once
+    // when mapLoaded flips true and then catches up via this watcher).
+    refreshDebug();
+    if (!mapLoaded) return;
     syncLayers();
     applyHighlight();
   },
-  { deep: true },
+  { deep: true, immediate: true },
 );
 
 watch(
@@ -279,6 +315,7 @@ onBeforeUnmount(() => {
   if (map) {
     map.remove();
     map = null;
+    mapLoaded = false;
     handles.clear();
   }
 });
@@ -339,13 +376,36 @@ defineExpose({ zoomToFeature });
 </script>
 
 <template>
-  <div ref="mapContainer" class="maplibre-map" data-testid="maplibre-container" />
+  <div class="map-wrap">
+    <div ref="mapContainer" class="maplibre-map" data-testid="maplibre-container" />
+    <pre v-if="debugEnabled" class="map-debug">{{ debugSummary }}</pre>
+  </div>
 </template>
 
 <style scoped>
+.map-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .maplibre-map {
   width: 100%;
   height: 100%;
   background: #eef3f7;
+}
+.map-debug {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 20;
+  background: rgba(17, 24, 39, 0.85);
+  color: #f9fafb;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  max-width: calc(100% - 1rem);
+  white-space: pre-wrap;
+  pointer-events: none;
 }
 </style>
