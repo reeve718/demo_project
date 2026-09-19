@@ -1,0 +1,1131 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "AmbDepots",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1738669628, 22.2503699129 ]
+			},
+			"properties" : {
+				"OBJECTID" : 1,
+				"FSDID" : "ABD",
+				"Name_ENG" : "Aberdeen Ambulance Depot ",
+				"Name_TC" : "香港仔救護站",
+				"Name_SC" : "香港仔救护站",
+				"Address_ENG" : "1 Nam Fung Road, Aberdeen, Hong Kong",
+				"Address_TC" : "香港仔南風道1號",
+				"Address_SC" : "香港仔南风道1号",
+				"District_ENG" : "SOUTHERN",
+				"District_TC" : "南區",
+				"District_SC" : "南区",
+				"Telephone" : "2541 6644",
+				"Northing" : 812400,
+				"Easting" : 835958,
+				"Latitude" : 22.25036991,
+				"Longitude" : 114.17386696
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2017063956, 22.2881342118 ]
+			},
+			"properties" : {
+				"OBJECTID" : 2,
+				"FSDID" : "BHL",
+				"Name_ENG" : "Braemar Hill Ambulance Depot ",
+				"Name_TC" : "寶馬山救護站",
+				"Name_SC" : "宝马山救护站",
+				"Address_ENG" : "170 Tin Hau Temple Road, North Point, Hong Kong",
+				"Address_TC" : "香港北角天后廟道170號",
+				"Address_SC" : "香港北角天后庙道170号",
+				"District_ENG" : "EASTERN",
+				"District_TC" : "東區",
+				"District_SC" : "东区",
+				"Telephone" : "2571 5293",
+				"Northing" : 816582,
+				"Easting" : 838827,
+				"Latitude" : 22.28813421,
+				"Longitude" : 114.2017064
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 113.9694999684, 22.3829868638 ]
+			},
+			"properties" : {
+				"OBJECTID" : 3,
+				"FSDID" : "CAS",
+				"Name_ENG" : "Castle Peak Bay Ambulance Depot ",
+				"Name_TC" : "青山灣救護站",
+				"Name_SC" : "青山湾救护站",
+				"Address_ENG" : "8 Tuen Yee Street, Tuen Mun, New Territories",
+				"Address_TC" : "新界屯門屯義街8號",
+				"Address_SC" : "新界屯门屯义街8号",
+				"District_ENG" : "TUEN MUN",
+				"District_TC" : "屯門區",
+				"District_SC" : "屯门区",
+				"Telephone" : "2451 7170",
+				"Northing" : 827100,
+				"Easting" : 814912,
+				"Latitude" : 22.38298686,
+				"Longitude" : 113.96949997
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2333305013, 22.2624792656 ]
+			},
+			"properties" : {
+				"OBJECTID" : 4,
+				"FSDID" : "CHA",
+				"Name_ENG" : "Chai Wan Ambulance  Depot ",
+				"Name_TC" : "柴灣救護站",
+				"Name_SC" : "柴湾救护站",
+				"Address_ENG" : "401-404 Chin Hing Hse, Hing Wah Estate, Chai Wan, Hong Kong",
+				"Address_TC" : "香港柴灣興華展興樓401-404室",
+				"Address_SC" : "香港柴湾兴华展兴楼401-404室",
+				"District_ENG" : "EASTERN",
+				"District_TC" : "東區",
+				"District_SC" : "东区",
+				"Telephone" : "2556 6490",
+				"Northing" : 813742,
+				"Easting" : 842087,
+				"Latitude" : 22.26247927,
+				"Longitude" : 114.2333305
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1548780871, 22.3356807549 ]
+			},
+			"properties" : {
+				"OBJECTID" : 5,
+				"FSDID" : "CHE",
+				"Name_ENG" : "Cheung Sha Wan Ambulance Depot ",
+				"Name_TC" : "長沙灣救護站",
+				"Name_SC" : "长沙湾救护站",
+				"Address_ENG" : "7 Fat Tseung Street, Cheung Sha Wan, Kowloon",
+				"Address_TC" : "九龍長沙灣發祥街7號",
+				"Address_SC" : "九龙长沙湾发祥街7号",
+				"District_ENG" : "SHAM SHUI PO",
+				"District_TC" : "深水埗區",
+				"District_SC" : "深水埗区",
+				"Telephone" : "2708 1573",
+				"Northing" : 821847,
+				"Easting" : 834002,
+				"Latitude" : 22.33568076,
+				"Longitude" : 114.15487809
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 113.9305373959, 22.3249474273 ]
+			},
+			"properties" : {
+				"OBJECTID" : 6,
+				"FSDID" : "CLN",
+				"Name_ENG" : "Chek Lap Kok North Ambulance Depot ",
+				"Name_TC" : "赤鱲角北救護站",
+				"Name_SC" : "赤鱲角北救护站",
+				"Address_ENG" : "Hong Kong International Airport, Chek Lap Kok",
+				"Address_TC" : "赤鱲角香港國際機場",
+				"Address_SC" : "赤鱲角香港国际机场",
+				"District_ENG" : "ISLANDS",
+				"District_TC" : "離島區",
+				"District_SC" : "离岛区",
+				"Telephone" : "2183 9934",
+				"Northing" : 820679,
+				"Easting" : 810889,
+				"Latitude" : 22.32495,
+				"Longitude" : 113.93054
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1399262034, 22.493928292 ]
+			},
+			"properties" : {
+				"OBJECTID" : 7,
+				"FSDID" : "FAN",
+				"Name_ENG" : "Fanling Ambulance Depot ",
+				"Name_TC" : "粉嶺救護站",
+				"Name_SC" : "粉岭救护站",
+				"Address_ENG" : "2 Sha Tau Kok Road - Lung Yeuk Tau, Fanling, New Territories",
+				"Address_TC" : "新界粉嶺沙頭角公路-龍躍頭段2號",
+				"Address_SC" : "新界粉岭沙头角公路-龙跃头段2号",
+				"District_ENG" : "NORTH",
+				"District_TC" : "北區",
+				"District_SC" : "北区",
+				"Telephone" : "2669 2250",
+				"Northing" : 839371,
+				"Easting" : 832466,
+				"Latitude" : 22.49392829,
+				"Longitude" : 114.1399262
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.179582229, 22.3145235505 ]
+			},
+			"properties" : {
+				"OBJECTID" : 8,
+				"FSDID" : "HOM",
+				"Name_ENG" : "Ho Man Tin Ambulance Depot ",
+				"Name_TC" : "何文田救護站",
+				"Name_SC" : "何文田救护站",
+				"Address_ENG" : "88 Chung Hau Street, Ho Man Tin, Kowloon",
+				"Address_TC" : "九龍何文田忠孝街88號",
+				"Address_SC" : "九龙何文田忠孝街88号",
+				"District_ENG" : "KOWLOON CITY",
+				"District_TC" : "九龍城區",
+				"District_SC" : "九龙城区",
+				"Telephone" : "2624 6110",
+				"Northing" : 819504,
+				"Easting" : 836547,
+				"Latitude" : 22.31452355,
+				"Longitude" : 114.17958223
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 113.9560528175, 22.31414753 ]
+			},
+			"properties" : {
+				"OBJECTID" : 9,
+				"FSDID" : "HZM",
+				"Name_ENG" : "Hong Kong-Zhuhai-Macao Bridge Ambulance Depot ",
+				"Name_TC" : "港珠澳大橋救護站",
+				"Name_SC" : "港珠澳大桥救护站",
+				"Address_ENG" : "10 Shun Ngon Road, Hong Kong-Zhuhai-Macao Bridge Hong Kong Port, New Territories",
+				"Address_TC" : "新界港珠澳大橋香港口岸順岸路10號",
+				"Address_SC" : "新界港珠澳大桥香港口岸顺岸路10号",
+				"District_ENG" : "ISLANDS",
+				"District_TC" : "離島區",
+				"District_SC" : "离岛区",
+				"Telephone" : "2516 0205",
+				"Northing" : 819479,
+				"Easting" : 813516,
+				"Latitude" : 22.31414301,
+				"Longitude" : 113.95605185
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1826306308, 22.3346887746 ]
+			},
+			"properties" : {
+				"OBJECTID" : 10,
+				"FSDID" : "KLT",
+				"Name_ENG" : "Kowloon Tong Ambulance Depot ",
+				"Name_TC" : "九龍塘救護站",
+				"Name_SC" : "九龙塘救护站",
+				"Address_ENG" : "3 Baptist University Road, Kowloon",
+				"Address_TC" : "九龍九龍塘浸會大學道3號",
+				"Address_SC" : "九龙九龙塘浸会大学道3号",
+				"District_ENG" : "KOWLOON CITY",
+				"District_TC" : "九龍城區",
+				"District_SC" : "九龙城区",
+				"Telephone" : "3793 6499",
+				"Northing" : 821737,
+				"Easting" : 836861,
+				"Latitude" : 22.33468878,
+				"Longitude" : 114.18263063
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.225954878, 22.3120778717 ]
+			},
+			"properties" : {
+				"OBJECTID" : 11,
+				"FSDID" : "KTG",
+				"Name_ENG" : "Kwun Tong Ambulance Depot",
+				"Name_TC" : "觀塘救護站",
+				"Name_SC" : "观塘救护站",
+				"Address_ENG" : "426 Kwun Tong Road, Kwun Tong, Kowloon",
+				"Address_TC" : "九龍觀塘觀塘道426號",
+				"Address_SC" : "九龙观塘观塘道426号",
+				"District_ENG" : "KWUN TONG",
+				"District_TC" : "觀塘區",
+				"District_SC" : "观塘区",
+				"Telephone" : "2345 7960",
+				"Northing" : 819234,
+				"Easting" : 841325,
+				"Latitude" : 22.31207787,
+				"Longitude" : 114.22595488
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2112327612, 22.3164344115 ]
+			},
+			"properties" : {
+				"OBJECTID" : 12,
+				"FSDID" : "KTK",
+				"Name_ENG" : "Kai Tak Ambulance Depot",
+				"Name_TC" : "啟德救護站",
+				"Name_SC" : "启德救护站",
+				"Address_ENG" : "5 Cheung Yip Street, Kowloon",
+				"Address_TC" : "九龍祥業街5號",
+				"Address_SC" : "九龙祥业街5号",
+				"District_ENG" : "KWUN TONG",
+				"District_TC" : "觀塘區",
+				"District_SC" : "观塘区",
+				"Telephone" : "2379 6199",
+				"Northing" : 819716,
+				"Easting" : 839808,
+				"Latitude" : 22.31643441,
+				"Longitude" : 114.21123276
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1249712911, 22.3598668142 ]
+			},
+			"properties" : {
+				"OBJECTID" : 13,
+				"FSDID" : "KWA",
+				"Name_ENG" : "Kwai Chung Ambulance Depot ",
+				"Name_TC" : "葵涌救護站",
+				"Name_SC" : "葵涌救护站",
+				"Address_ENG" : "86 Hing Shing Road, Kwai Chung , New Territories",
+				"Address_TC" : "新界葵涌興盛路86號",
+				"Address_SC" : "新界葵涌兴盛路86号",
+				"District_ENG" : "KWAI TSING",
+				"District_TC" : "葵青區",
+				"District_SC" : "葵青区",
+				"Telephone" : "2417 5750",
+				"Northing" : 824526,
+				"Easting" : 830922,
+				"Latitude" : 22.35986681,
+				"Longitude" : 114.12497129
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1413167809, 22.3376379848 ]
+			},
+			"properties" : {
+				"OBJECTID" : 14,
+				"FSDID" : "LAI",
+				"Name_ENG" : "Lai Chi Kok Ambulance Depot ",
+				"Name_TC" : "荔枝角救護站",
+				"Name_SC" : "荔枝角救护站",
+				"Address_ENG" : "33 Mei Lai Road, Lai Chi Kok, Kowloon",
+				"Address_TC" : "九龍美荔道33號",
+				"Address_SC" : "九龙美荔道33号",
+				"District_ENG" : "SHAM SHUI PO",
+				"District_TC" : "深水埗區",
+				"District_SC" : "深水埗区",
+				"Telephone" : "2959 1857",
+				"Northing" : 822064,
+				"Easting" : 832605,
+				"Latitude" : 22.33763799,
+				"Longitude" : 114.14131678
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2359576089, 22.3035315819 ]
+			},
+			"properties" : {
+				"OBJECTID" : 15,
+				"FSDID" : "LAT",
+				"Name_ENG" : "Lam Tin Ambulance Depot ",
+				"Name_TC" : "藍田救護站",
+				"Name_SC" : "蓝田救护站",
+				"Address_ENG" : "30 Lei Yue Mun Road, Kowloon",
+				"Address_TC" : "九龍鯉魚門道30號",
+				"Address_SC" : "九龙鲤鱼门道30号",
+				"District_ENG" : "KWUN TONG",
+				"District_TC" : "觀塘區",
+				"District_SC" : "观塘区",
+				"Telephone" : "2952 3861",
+				"Northing" : 818288,
+				"Easting" : 842356,
+				"Latitude" : 22.30353158,
+				"Longitude" : 114.23595761
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1370738906, 22.3747796592 ]
+			},
+			"properties" : {
+				"OBJECTID" : 16,
+				"FSDID" : "LEI",
+				"Name_ENG" : "Lei Muk Shue Ambulance Depot ",
+				"Name_TC" : "梨木樹救護站",
+				"Name_SC" : "梨木树救护站",
+				"Address_ENG" : "300A Wo Yi Hop Road, Kwai Chung, New Territories",
+				"Address_TC" : "新界葵涌和宜合道300號A",
+				"Address_SC" : "新界葵涌和宜合道300号A",
+				"District_ENG" : "KWAI TSING",
+				"District_TC" : "葵青區",
+				"District_SC" : "葵青区",
+				"Telephone" : "2487 1957",
+				"Northing" : 826177,
+				"Easting" : 832169,
+				"Latitude" : 22.37477966,
+				"Longitude" : 114.13707389
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.0024045111, 22.4715330686 ]
+			},
+			"properties" : {
+				"OBJECTID" : 17,
+				"FSDID" : "LFS",
+				"Name_ENG" : "Lau Fau Shan Ambulance Depot ",
+				"Name_TC" : "流浮山救護站",
+				"Name_SC" : "流浮山救护站",
+				"Address_ENG" : "101 Tin Shui Road, Tin Shui Wai, New Territories",
+				"Address_TC" : "新界天水圍天瑞路101號",
+				"Address_SC" : "新界天水围天瑞路101号",
+				"District_ENG" : "YUEN LONG",
+				"District_TC" : "元朗區",
+				"District_SC" : "元朗区",
+				"Telephone" : "2446 2892",
+				"Northing" : 836901,
+				"Easting" : 818312,
+				"Latitude" : 22.47153307,
+				"Longitude" : 114.00240451
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2331218771, 22.4195750905 ]
+			},
+			"properties" : {
+				"OBJECTID" : 18,
+				"FSDID" : "MAO",
+				"Name_ENG" : "Ma On Shan Ambulance Depot ",
+				"Name_TC" : "馬鞍山救護站",
+				"Name_SC" : "马鞍山救护站",
+				"Address_ENG" : "1 On Shan Lane, Ma On Shan, New Territories",
+				"Address_TC" : "新界馬鞍山鞍山里1號",
+				"Address_SC" : "新界马鞍山鞍山里1号",
+				"District_ENG" : "SHA TIN",
+				"District_TC" : "沙田區",
+				"District_SC" : "沙田区",
+				"Telephone" : "2640 3619",
+				"Northing" : 831138,
+				"Easting" : 842059,
+				"Latitude" : 22.41957509,
+				"Longitude" : 114.23312188
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1879395798, 22.32465552 ]
+			},
+			"properties" : {
+				"OBJECTID" : 19,
+				"FSDID" : "MAT",
+				"Name_ENG" : "Ma Tau Chung Ambulance Depot ",
+				"Name_TC" : "馬頭涌救護站",
+				"Name_SC" : "马头涌救护站",
+				"Address_ENG" : "53 Shing Tak Street, Ma Tau Wai, Kowloon",
+				"Address_TC" : "九龍馬頭圍盛德街53號",
+				"Address_SC" : "九龙马头围盛德街53号",
+				"District_ENG" : "KOWLOON CITY",
+				"District_TC" : "九龍城區",
+				"District_SC" : "九龙城区",
+				"Telephone" : "2714 3746",
+				"Northing" : 820626,
+				"Easting" : 837408,
+				"Latitude" : 22.32465552,
+				"Longitude" : 114.18793958
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1622376758, 22.320194132 ]
+			},
+			"properties" : {
+				"OBJECTID" : 20,
+				"FSDID" : "MON",
+				"Name_ENG" : "Mongkok Ambulance Depot ",
+				"Name_TC" : "旺角救護站",
+				"Name_SC" : "旺角救护站",
+				"Address_ENG" : "42 Tai Kok Tsui Road, Kowloon",
+				"Address_TC" : "九龍大角咀道42號",
+				"Address_SC" : "九龙大角咀道42号",
+				"District_ENG" : "YAU TSIM MONG",
+				"District_TC" : "油尖旺區",
+				"District_SC" : "油尖旺区",
+				"Telephone" : "2117 6570",
+				"Northing" : 820132,
+				"Easting" : 834760,
+				"Latitude" : 22.32019413,
+				"Longitude" : 114.16223768
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1780386996, 22.2757551118 ]
+			},
+			"properties" : {
+				"OBJECTID" : 21,
+				"FSDID" : "MOR",
+				"Name_ENG" : "Morrison Hill Ambulance Depot ",
+				"Name_TC" : "摩理臣山救護站",
+				"Name_SC" : "摩理臣山救护站",
+				"Address_ENG" : "8 Oi Kwan Road, Wan Chai, Hong Kong",
+				"Address_TC" : "香港灣仔愛群道8號",
+				"Address_SC" : "香港湾仔爱群道8号",
+				"District_ENG" : "WAN CHAI",
+				"District_TC" : "灣仔區",
+				"District_SC" : "湾仔区",
+				"Telephone" : "2893 5592",
+				"Northing" : 815211,
+				"Easting" : 836388,
+				"Latitude" : 22.27575511,
+				"Longitude" : 114.1780387
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1290569154, 22.2795048358 ]
+			},
+			"properties" : {
+				"OBJECTID" : 22,
+				"FSDID" : "MOU",
+				"Name_ENG" : "Mount Davis Ambulance Depot ",
+				"Name_TC" : "摩星嶺救護站",
+				"Name_SC" : "摩星岭救护站",
+				"Address_ENG" : "2 Lung Wah Street, Kennedy Town, Hong Kong",
+				"Address_TC" : "香港龍華街2號",
+				"Address_SC" : "香港龙华街2号",
+				"District_ENG" : "CENTRAL AND WESTERN",
+				"District_TC" : "中西區",
+				"District_SC" : "中西区",
+				"Telephone" : "2819 7967",
+				"Northing" : 815627,
+				"Easting" : 831340,
+				"Latitude" : 22.27950484,
+				"Longitude" : 114.12905692
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2122430854, 22.3201006154 ]
+			},
+			"properties" : {
+				"OBJECTID" : 23,
+				"FSDID" : "NGA",
+				"Name_ENG" : "Ngau Tau Kok Ambulance Depot ",
+				"Name_TC" : "牛頭角救護站",
+				"Name_SC" : "牛头角救护站",
+				"Address_ENG" : "9 Siu Yip Street, Ngau Tau Kok, Kowloon",
+				"Address_TC" : "九龍牛頭角兆業街9號",
+				"Address_SC" : "九龙牛头角兆业街9号",
+				"District_ENG" : "KWUN TONG",
+				"District_TC" : "觀塘區",
+				"District_SC" : "观塘区",
+				"Telephone" : "2750 1710",
+				"Northing" : 820122,
+				"Easting" : 839912,
+				"Latitude" : 22.32010062,
+				"Longitude" : 114.21224309
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1686815555, 22.3360342294 ]
+			},
+			"properties" : {
+				"OBJECTID" : 24,
+				"FSDID" : "PAK",
+				"Name_ENG" : "Pak Tin Ambulance Depot ",
+				"Name_TC" : "白田救護站",
+				"Name_SC" : "白田救护站",
+				"Address_ENG" : "G/F, Shui Tin House, Pak Tin Estate, 50 Pak Wan Street, Shek Kip Mei, Kowloon",
+				"Address_TC" : "九龍石硤尾白雲街50號白田瑞田樓地下",
+				"Address_SC" : "九龙石硖尾白云街50号白田瑞田楼地下",
+				"District_ENG" : "SHAM SHUI PO",
+				"District_TC" : "深水埗區",
+				"District_SC" : "深水埗区",
+				"Telephone" : "2776 7803",
+				"Northing" : 821886,
+				"Easting" : 835424,
+				"Latitude" : 22.33603423,
+				"Longitude" : 114.16868156
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.0396048763, 22.3174185155 ]
+			},
+			"properties" : {
+				"OBJECTID" : 25,
+				"FSDID" : "PBY",
+				"Name_ENG" : "Penny's Bay Ambulance Depot ",
+				"Name_TC" : "竹篙灣救護站",
+				"Name_SC" : "竹篙湾救护站",
+				"Address_ENG" : "8 Long Yan Road, North Lantau Island, New Territories",
+				"Address_TC" : "新界大嶼山朗欣路8號",
+				"Address_SC" : "新界大屿山朗欣路8号",
+				"District_ENG" : "TSUEN WAN",
+				"District_TC" : "荃灣區",
+				"District_SC" : "荃湾区",
+				"Telephone" : "2983 6541",
+				"Northing" : 819831,
+				"Easting" : 822125,
+				"Latitude" : 22.31741852,
+				"Longitude" : 114.03960488
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1386799403, 22.2531559401 ]
+			},
+			"properties" : {
+				"OBJECTID" : 26,
+				"FSDID" : "POK",
+				"Name_ENG" : "Pok Fu Lam Ambulance Depot ",
+				"Name_TC" : "薄扶林救護站",
+				"Name_SC" : "薄扶林救护站",
+				"Address_ENG" : "789 Pok Fu Lam Road, Hong Kong",
+				"Address_TC" : "香港薄扶林道789號",
+				"Address_SC" : "香港薄扶林道789号",
+				"District_ENG" : "SOUTHERN",
+				"District_TC" : "南區",
+				"District_SC" : "南区",
+				"Telephone" : "2551 6000",
+				"Northing" : 812709,
+				"Easting" : 832331,
+				"Latitude" : 22.25315594,
+				"Longitude" : 114.13867994
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2535362968, 22.3271031024 ]
+			},
+			"properties" : {
+				"OBJECTID" : 27,
+				"FSDID" : "POL",
+				"Name_ENG" : "Po Lam Ambulance Depot ",
+				"Name_TC" : "寶林救護站",
+				"Name_SC" : "宝林救护站",
+				"Address_ENG" : "17 Po Lam Road North, New Territories",
+				"Address_TC" : "新界寶琳北路17號",
+				"Address_SC" : "新界宝琳北路17号",
+				"District_ENG" : "SAI KUNG",
+				"District_TC" : "西貢區",
+				"District_SC" : "西贡区",
+				"Telephone" : "2701 0955",
+				"Northing" : 820899,
+				"Easting" : 844166,
+				"Latitude" : 22.3271031,
+				"Longitude" : 114.2535363
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2197538667, 22.2828565543 ]
+			},
+			"properties" : {
+				"OBJECTID" : 28,
+				"FSDID" : "SAI",
+				"Name_ENG" : "Sai Wan Ho Ambulance Depot ",
+				"Name_TC" : "西灣河救護站",
+				"Name_SC" : "西湾河救护站",
+				"Address_ENG" : "22 Wai Hang Street, Sai Wan Ho, Hong Kong",
+				"Address_TC" : "香港西灣河惠亨街22號",
+				"Address_SC" : "香港西湾河惠亨街22号",
+				"District_ENG" : "EASTERN",
+				"District_TC" : "東區",
+				"District_SC" : "东区",
+				"Telephone" : "2569 7627",
+				"Northing" : 815998,
+				"Easting" : 840687,
+				"Latitude" : 22.28285655,
+				"Longitude" : 114.21975387
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2003651188, 22.3909926224 ]
+			},
+			"properties" : {
+				"OBJECTID" : 29,
+				"FSDID" : "SHA",
+				"Name_ENG" : "Shatin Ambulance Depot ",
+				"Name_TC" : "沙田救護站",
+				"Name_SC" : "沙田救护站",
+				"Address_ENG" : "24 Yuen Wo Road, Shatin, New Territories",
+				"Address_TC" : "新界沙田源禾路24號",
+				"Address_SC" : "新界沙田源禾路24号",
+				"District_ENG" : "SHA TIN",
+				"District_TC" : "沙田區",
+				"District_SC" : "沙田区",
+				"Telephone" : "2691 2514",
+				"Northing" : 827972,
+				"Easting" : 838687,
+				"Latitude" : 22.39099262,
+				"Longitude" : 114.20036512
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1201256128, 22.5057794422 ]
+			},
+			"properties" : {
+				"OBJECTID" : 30,
+				"FSDID" : "SHE",
+				"Name_ENG" : "Sheung Shui Ambulance Depot ",
+				"Name_TC" : "上水救護站",
+				"Name_SC" : "上水救护站",
+				"Address_ENG" : "1 Choi Shun Street, Sheung Shui, New Territories",
+				"Address_TC" : "新界上水彩順街1號",
+				"Address_SC" : "新界上水彩顺街1号",
+				"District_ENG" : "NORTH",
+				"District_TC" : "北區",
+				"District_SC" : "北区",
+				"Telephone" : "2671 1271",
+				"Northing" : 840684,
+				"Easting" : 830429,
+				"Latitude" : 22.50577944,
+				"Longitude" : 114.12012561
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.0631298161, 22.3677098201 ]
+			},
+			"properties" : {
+				"OBJECTID" : 31,
+				"FSDID" : "STG",
+				"Name_ENG" : "Sham Tseng Ambulance Depot ",
+				"Name_TC" : "深井救護站",
+				"Name_SC" : "深井救护站",
+				"Address_ENG" : "32 Castle Peak Road - Sham Tseng, Sham Tseng, New Territories",
+				"Address_TC" : "新界深井青山公路-深井段32號",
+				"Address_SC" : "新界深井青山公路-深井段32号",
+				"District_ENG" : "TSUEN WAN",
+				"District_TC" : "荃灣區",
+				"District_SC" : "荃湾区",
+				"Telephone" : "2496 4917",
+				"Northing" : 825398,
+				"Easting" : 824553,
+				"Latitude" : 22.36770982,
+				"Longitude" : 114.06312982
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1639338161, 22.4516876818 ]
+			},
+			"properties" : {
+				"OBJECTID" : 32,
+				"FSDID" : "TAI",
+				"Name_ENG" : "Tai Po Ambulance Depot ",
+				"Name_TC" : "大埔救護站",
+				"Name_SC" : "大埔救护站",
+				"Address_ENG" : "21 Tai Po Tai Wo Road, Tai Po, New Territories",
+				"Address_TC" : "新界大埔太和路21號",
+				"Address_SC" : "新界大埔太和路21号",
+				"District_ENG" : "TAI PO",
+				"District_TC" : "大埔區",
+				"District_SC" : "大埔区",
+				"Telephone" : "2658 0359",
+				"Northing" : 834693,
+				"Easting" : 834936,
+				"Latitude" : 22.45168768,
+				"Longitude" : 114.16393382
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1494115112, 22.5409152171 ]
+			},
+			"properties" : {
+				"OBJECTID" : 33,
+				"FSDID" : "TAK",
+				"Name_ENG" : "Ta Kwu Ling Ambulance Depot",
+				"Name_TC" : "打鼓嶺救護站",
+				"Name_SC" : "打鼓岭救护站",
+				"Address_ENG" : "Lin Ma Hang Road, Ta Kwu Ling, New Territories",
+				"Address_TC" : "新界打鼓嶺蓮麻坑路",
+				"Address_SC" : "新界打鼓岭莲麻坑路",
+				"District_ENG" : "NORTH",
+				"District_TC" : "北區",
+				"District_SC" : "北区",
+				"Telephone" : "2756 3895",
+				"Northing" : 844574,
+				"Easting" : 833443,
+				"Latitude" : 22.541,
+				"Longitude" : 114.149
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 113.941736935, 22.2852657363 ]
+			},
+			"properties" : {
+				"OBJECTID" : 34,
+				"FSDID" : "TCG",
+				"Name_ENG" : "Tung Chung Ambulance Depot ",
+				"Name_TC" : "東涌救護站",
+				"Name_SC" : "东涌救护站",
+				"Address_ENG" : "3 Shun Tung Road, Tung Chung, Lantau Island",
+				"Address_TC" : "大嶼山東涌順東路3號",
+				"Address_SC" : "大屿山东涌顺东路3号",
+				"District_ENG" : "ISLANDS",
+				"District_TC" : "離島區",
+				"District_SC" : "离岛区",
+				"Telephone" : "2988 8282",
+				"Northing" : 816283,
+				"Easting" : 812036,
+				"Latitude" : 22.28526574,
+				"Longitude" : 113.94173694
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2744860846, 22.2897954672 ]
+			},
+			"properties" : {
+				"OBJECTID" : 35,
+				"FSDID" : "TCS",
+				"Name_ENG" : "Tai Chik Sha Ambulance Depot ",
+				"Name_TC" : "大赤沙救護站",
+				"Name_SC" : "大赤沙救护站",
+				"Address_ENG" : "321 Wan Po Road, Tseung Kwan O, New Territories",
+				"Address_TC" : "新界將軍澳環保大道321號",
+				"Address_SC" : "新界将军澳环保大道321号",
+				"District_ENG" : "SAI KUNG",
+				"District_TC" : "西貢區",
+				"District_SC" : "西贡区",
+				"Telephone" : "2623 9232",
+				"Northing" : 816769,
+				"Easting" : 846327,
+				"Latitude" : 22.28979547,
+				"Longitude" : 114.27448609
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1759714162, 22.3663409886 ]
+			},
+			"properties" : {
+				"OBJECTID" : 36,
+				"FSDID" : "TIN",
+				"Name_ENG" : "Tin Sum Ambulance Depot ",
+				"Name_TC" : "田心救護站",
+				"Name_SC" : "田心救护站",
+				"Address_ENG" : "2 Fu Kin Street, Shatin, New Territories",
+				"Address_TC" : "新界沙田富健街2號",
+				"Address_SC" : "新界沙田富健街2号",
+				"District_ENG" : "SHA TIN",
+				"District_TC" : "沙田區",
+				"District_SC" : "沙田区",
+				"Telephone" : "2681 0713",
+				"Northing" : 825242,
+				"Easting" : 836175,
+				"Latitude" : 22.36634099,
+				"Longitude" : 114.17597142
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.2550280258, 22.3041646837 ]
+			},
+			"properties" : {
+				"OBJECTID" : 37,
+				"FSDID" : "TKG",
+				"Name_ENG" : "Tiu Keng Leng Ambulance Depot",
+				"Name_TC" : "調景嶺救護站",
+				"Name_SC" : "调景岭救护站",
+				"Address_ENG" : "6 Chui Shin Street, Tseung Kwan O, New Territories",
+				"Address_TC" : "新界將軍澳翠善街6號",
+				"Address_SC" : "新界将军澳翠善街6号",
+				"District_ENG" : "SAI KUNG",
+				"District_TC" : "西貢區",
+				"District_SC" : "西貢區",
+				"Telephone" : "2357 8111",
+				"Northing" : 818359,
+				"Easting" : 844321,
+				"Latitude" : 22.30417,
+				"Longitude" : 114.25503
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.0016442881, 22.4502024248 ]
+			},
+			"properties" : {
+				"OBJECTID" : 38,
+				"FSDID" : "TSH",
+				"Name_ENG" : "Tin Shui Wai Ambulance Depot ",
+				"Name_TC" : "天水圍救護站",
+				"Name_SC" : "天水围救护站",
+				"Address_ENG" : "3 Tin Ho Road, Tin Shui Wai, New Territories",
+				"Address_TC" : "新界天水圍天河路3號",
+				"Address_SC" : "新界天水围天河路3号",
+				"District_ENG" : "YUEN LONG",
+				"District_TC" : "元朗區",
+				"District_SC" : "元朗区",
+				"Telephone" : "2445 0033",
+				"Northing" : 834539,
+				"Easting" : 818231,
+				"Latitude" : 22.45020243,
+				"Longitude" : 114.00164429
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1065680889, 22.3506577438 ]
+			},
+			"properties" : {
+				"OBJECTID" : 39,
+				"FSDID" : "TSI",
+				"Name_ENG" : "Tsing Yi Ambulance Depot ",
+				"Name_TC" : "青衣救護站",
+				"Name_SC" : "青衣救护站",
+				"Address_ENG" : "30 Chung Mei Road, Tsing Yi, New Territories",
+				"Address_TC" : "新界青衣涌美路30號",
+				"Address_SC" : "新界青衣涌美路30号",
+				"District_ENG" : "KWAI TSING",
+				"District_TC" : "葵青區",
+				"District_SC" : "葵青区",
+				"Telephone" : "2495 5080",
+				"Northing" : 823507,
+				"Easting" : 829026,
+				"Latitude" : 22.35065774,
+				"Longitude" : 114.10656809
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1216744493, 22.3740075479 ]
+			},
+			"properties" : {
+				"OBJECTID" : 40,
+				"FSDID" : "TSU",
+				"Name_ENG" : "Tsuen Wan Ambulance Depot ",
+				"Name_TC" : "荃灣救護站",
+				"Name_SC" : "荃湾救护站",
+				"Address_ENG" : "47-51 Wai Tsuen Road, Tsuen Wan, New Territories",
+				"Address_TC" : "新界荃灣蕙荃道47-51號",
+				"Address_SC" : "新界荃湾蕙荃道47-51号",
+				"District_ENG" : "TSUEN WAN",
+				"District_TC" : "荃灣區",
+				"District_SC" : "荃湾区",
+				"Telephone" : "2416 2751",
+				"Northing" : 826092,
+				"Easting" : 830583,
+				"Latitude" : 22.37400755,
+				"Longitude" : 114.12167445
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1792326068, 22.3017000942 ]
+			},
+			"properties" : {
+				"OBJECTID" : 41,
+				"FSDID" : "TTU",
+				"Name_ENG" : "Tsim Tung Ambulance Depot ",
+				"Name_TC" : "尖東救護站",
+				"Name_SC" : "尖东救护站",
+				"Address_ENG" : "7 Hong Tat Path, Tsim Sha Tsui East, Kowloon",
+				"Address_TC" : "九龍尖沙咀東部康達徑7號",
+				"Address_SC" : "九龙尖沙咀东部康达径7号",
+				"District_ENG" : "YAU TSIM MONG",
+				"District_TC" : "油尖旺區",
+				"District_SC" : "油尖旺区",
+				"Telephone" : "2311 5111",
+				"Northing" : 818084,
+				"Easting" : 836511,
+				"Latitude" : 22.30170009,
+				"Longitude" : 114.17923261
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 113.9712780629, 22.3954511877 ]
+			},
+			"properties" : {
+				"OBJECTID" : 42,
+				"FSDID" : "TUE",
+				"Name_ENG" : "Tuen Mun Ambulance Depot ",
+				"Name_TC" : "屯門救護站",
+				"Name_SC" : "屯门救护站",
+				"Address_ENG" : "1 Tsun Wen Road, Tuen Mun, New Territories",
+				"Address_TC" : "新界屯門震寰路1號",
+				"Address_SC" : "新界屯门震寰路1号",
+				"District_ENG" : "TUEN MUN",
+				"District_TC" : "屯門區",
+				"District_SC" : "屯门区",
+				"Telephone" : "2463 2125",
+				"Northing" : 828480,
+				"Easting" : 815097,
+				"Latitude" : 22.39545,
+				"Longitude" : 113.97128
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1970175851, 22.342616464 ]
+			},
+			"properties" : {
+				"OBJECTID" : 43,
+				"FSDID" : "WON",
+				"Name_ENG" : "Wong Tai Sin Ambulance Depot ",
+				"Name_TC" : "黃大仙救護站",
+				"Name_SC" : "黄大仙救护站",
+				"Address_ENG" : "5 Ying Fung Lane, Wong Tai Sin, Kowloon",
+				"Address_TC" : "九龍黃大仙盈鳳里5號",
+				"Address_SC" : "九龙黄大仙盈凤里5号",
+				"District_ENG" : "WONG TAI SIN",
+				"District_TC" : "黃大仙區",
+				"District_SC" : "黄大仙区",
+				"Telephone" : "2323 9949",
+				"Northing" : 822615,
+				"Easting" : 838343,
+				"Latitude" : 22.34261646,
+				"Longitude" : 114.19701759
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.1714683819, 22.3129250689 ]
+			},
+			"properties" : {
+				"OBJECTID" : 44,
+				"FSDID" : "YAU",
+				"Name_ENG" : "Yau Ma Tei Ambulance Depot ",
+				"Name_TC" : "油麻地救護站",
+				"Name_SC" : "油麻地救护站",
+				"Address_ENG" : "44 Waterloo Road, Yau Ma Tei, Kowloon",
+				"Address_TC" : "九龍窩打老道44號",
+				"Address_SC" : "九龙窝打老道44号",
+				"District_ENG" : "YAU TSIM MONG",
+				"District_TC" : "油尖旺區",
+				"District_SC" : "油尖旺区",
+				"Telephone" : "2770 2547",
+				"Northing" : 819327,
+				"Easting" : 835711,
+				"Latitude" : 22.31292507,
+				"Longitude" : 114.17146838
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 114.0331498019, 22.4410586278 ]
+			},
+			"properties" : {
+				"OBJECTID" : 45,
+				"FSDID" : "YUE",
+				"Name_ENG" : "Yuen Long Ambulance Depot ",
+				"Name_TC" : "元朗救護站",
+				"Name_SC" : "元朗救护站",
+				"Address_ENG" : "2 Fung Kam Street, Yuen Long, New Territories",
+				"Address_TC" : "新界元朗鳳琴街2號",
+				"Address_SC" : "新界元朗凤琴街2号",
+				"District_ENG" : "YUEN LONG",
+				"District_TC" : "元朗區",
+				"District_SC" : "元朗区",
+				"Telephone" : "2474 6845",
+				"Northing" : 833523,
+				"Easting" : 821473,
+				"Latitude" : 22.44105863,
+				"Longitude" : 114.0331498
+			}
+		}
+	]
+}

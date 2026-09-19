@@ -61,6 +61,16 @@ async function main() {
   try {
     await client.query('BEGIN');
 
+    // 0. Remove datasets that are no longer in the manifest. CASCADE on the FK
+    //    in geo_features.dataset_id drops their features in the same statement.
+    const manifestSlugs = manifest.datasets
+      .map((ds) => String(ds.slug ?? '').trim())
+      .filter(Boolean);
+    await client.query(
+      `DELETE FROM datasets WHERE NOT (slug = ANY($1::text[]))`,
+      [manifestSlugs],
+    );
+
     for (const ds of manifest.datasets) {
       const slug = String(ds.slug ?? '').trim();
       if (!slug) {
