@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 import AppError from '../components/common/AppError.vue';
 import AppLoading from '../components/common/AppLoading.vue';
@@ -11,35 +11,33 @@ import LayerPanel from '../components/map/LayerPanel.vue';
 import MapLoadingIndicator from '../components/map/MapLoadingIndicator.vue';
 import MapView from '../components/map/MapView.vue';
 import MobileMapDrawer from '../components/map/MobileMapDrawer.vue';
-import { useMapFeatureQuery } from '../composables/useMapFeatureQuery';
+import { useMapLayerQueries } from '../composables/useMapLayerQueries';
 import { listDatasets } from '../api/datasets';
 import { useMapStore } from '../stores/map';
-import type { BboxTuple, DatasetDetail, GeoFeature } from '../types';
+import type { BboxTuple, DatasetDetail, RequestStatus } from '../types';
 
 const route = useRoute();
+const router = useRouter();
 const mapStore = useMapStore();
 
 const datasets = ref<DatasetDetail[]>([]);
 const datasetsLoading = ref<boolean>(true);
 const datasetsError = ref<string>('');
 const mapReady = ref<boolean>(false);
+const fitTarget = ref<BboxTuple | null>(null);
 
 const mapRef = ref<InstanceType<typeof MapView> | null>(null);
 const drawerOpen = ref<boolean>(false);
 
-const initialSlug = computed(() => String(route.query.dataset ?? ''));
 const bbox = ref<BboxTuple | null>(null);
 
-const { features, watchBbox } = useMapFeatureQuery();
-
+const { watchBbox } = useMapLayerQueries();
 watchBbox(bbox);
 
 async function loadDatasets() {
   datasetsLoading.value = true;
   datasetsError.value = '';
   try {
-    // List page size is 50 (the API maximum) so the selector covers the
-    // small synthetic catalogue without further pagination logic.
     const result = await listDatasets({ pageSize: 50 });
     datasets.value = result.items.map((item) => ({ ...item, fields: [] }));
   } catch (err) {
@@ -51,26 +49,123 @@ async function loadDatasets() {
   }
 }
 
-function selectDataset(slug: string) {
-  mapStore.selectDataset(slug);
-  drawerOpen.value = false;
-  if (bbox.value) {
-    mapStore.setCurrentBbox(bbox.value);
+function datasetBySlug(slug: string): DatasetDetail | undefined {
+  return datasets.value.find((d) => d.slug === slug);
+}
+
+function datasetTitle(slug: string): string {
+  return datasetBySlug(slug)?.title ?? slug;
+}
+
+const orderedLayers = computed(() =>
+  mapStore.activeDatasetSlugs
+    .map((slug) => mapStore.layers[slug])
+    .filter((l): l is NonNullable<typeof l> => Boolean(l)),
+);
+
+const layerDescriptors = computed(() =>
+  orderedLayers.value.map((l) => ({
+    slug: l.slug,
+    features: l.features,
+    visible: l.visible,
+    color: l.color,
+  })),
+);
+
+const excludeSlugs = computed(() => mapStore.activeDatasetSlugs);
+
+/** Aggregate status across layers for the loading indicator. */
+const aggregateStatus = computed<RequestStatus>(() => {
+  const layers = orderedLayers.value;
+  if (layers.length === 0) return 'idle';
+  if (layers.some((l) => l.status === 'loading')) return 'loading';
+  if (layers.some((l) => l.status === 'error')) return 'error';
+  if (layers.every((l) => l.status === 'empty' || l.status === 'success') &&
+      layers.every((l) => l.features.length === 0)) return 'empty';
+  return 'success';
+});
+
+const aggregateError = computed(() => {
+  const errLayer = orderedLayers.value.find((l) => l.status === 'error');
+  return errLayer?.errorMessage ?? '';
+});
+
+function parseSeedSlugs(): string[] {
+  const q = route.query;
+  if (typeof q.datasets === 'string' && q.datasets.length > 0) {
+    return q.datasets
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
   }
+  // Backward compatibility: old single-dataset URL.
+  if (typeof q.dataset === 'string' && q.dataset.length > 0) {
+    return [q.dataset];
+  }
+  return [];
 }
 
 function onBboxChange(next: BboxTuple) {
   bbox.value = next;
-  mapStore.setCurrentBbox(next);
+  mapStore.setViewport(next);
 }
 
-function onFeatureClick(feature: GeoFeature) {
-  mapStore.selectFeature(feature);
+function onFeatureClick(payload: { feature: import('../types').GeoFeature; datasetSlug: string }) {
+  mapStore.selectFeature(payload.feature, payload.datasetSlug);
+}
+
+function onToggleVisibility(slug: string) {
+  mapStore.toggleVisibility(slug);
+}
+
+function onRemoveLayer(slug: string) {
+  if (mapStore.selectedFeature?.datasetSlug === slug) {
+    mapStore.clearSelectedFeature();
+  }
+  mapStore.removeDataset(slug);
+}
+
+function onFitLayer(slug: string) {
+  const bbox = mapStore.layers[slug]?.bbox ?? datasetBySlug(slug)?.bbox ?? null;
+  if (bbox) fitTarget.value = bbox;
+}
+
+function onFitAll() {
+  const bboxes = orderedLayers.value
+    .map((l) => l.bbox ?? datasetBySlug(l.slug)?.bbox ?? null)
+    .filter((b): b is BboxTuple => b !== null);
+  if (bboxes.length === 0) return;
+  let minLon = Infinity;
+  let minLat = Infinity;
+  let maxLon = -Infinity;
+  let maxLat = -Infinity;
+  for (const b of bboxes) {
+    if (b[0] < minLon) minLon = b[0];
+    if (b[1] < minLat) minLat = b[1];
+    if (b[2] > maxLon) maxLon = b[2];
+    if (b[3] > maxLat) maxLat = b[3];
+  }
+  fitTarget.value = [minLon, minLat, maxLon, maxLat];
+}
+
+function onClearAll() {
+  mapStore.clearAll();
+}
+
+function onAddLayer(slug: string) {
+  // The detail page is the primary add path, but allow adding from the
+  // map page too so users can stack layers without round-tripping.
+  mapStore.addDataset(slug);
+  // Update URL too so it stays shareable.
+  void router.replace({
+    path: '/map',
+    query: { datasets: mapStore.activeDatasetSlugs.join(',') },
+  });
 }
 
 function zoomToSelected() {
   if (mapStore.selectedFeature && mapRef.value) {
-    mapRef.value.zoomToFeature(mapStore.selectedFeature);
+    mapRef.value.zoomToFeature(mapStore.selectedFeature.feature);
   }
 }
 
@@ -80,16 +175,43 @@ function closeFeature() {
 
 onMounted(async () => {
   await loadDatasets();
-  if (initialSlug.value) {
-    selectDataset(initialSlug.value);
+  const seed = parseSeedSlugs();
+  if (seed.length > 0) {
+    mapStore.seedFromSlugs(seed);
   }
 });
 
-watch(initialSlug, (slug) => {
-  if (slug && slug !== mapStore.selectedDatasetSlug) {
-    selectDataset(slug);
-  }
-});
+// After seeding, hydrate layer titles + bboxes from the catalogue so the
+// panel can show human-friendly names before the first bbox query lands.
+watch(
+  () => [datasets.value, mapStore.activeDatasetSlugs.slice()] as const,
+  ([ds, slugs]) => {
+    for (const slug of slugs) {
+      const dsEntry = (ds as DatasetDetail[]).find((d) => d.slug === slug);
+      if (dsEntry) {
+        mapStore.setLayerTitle(slug, dsEntry.title);
+        mapStore.setLayerBbox(slug, dsEntry.bbox);
+      }
+    }
+  },
+  { immediate: true },
+);
+
+// Keep the URL in sync with the active set without polluting history.
+watch(
+  () => mapStore.activeDatasetSlugs.slice(),
+  (slugs) => {
+    const current = typeof route.query.datasets === 'string'
+      ? route.query.datasets
+      : (typeof route.query.dataset === 'string' ? route.query.dataset : '');
+    const next = slugs.join(',');
+    if (current === next) return;
+    void router.replace({
+      path: '/map',
+      query: slugs.length > 0 ? { datasets: next } : {},
+    });
+  },
+);
 </script>
 
 <template>
@@ -109,17 +231,19 @@ watch(initialSlug, (slug) => {
       <aside class="left-panel" aria-label="Layer controls">
         <LayerPanel
           :datasets="datasets"
-          :selected-slug="mapStore.selectedDatasetSlug"
-          :layer-visible="mapStore.isLayerVisible"
-          @select="selectDataset"
-          @toggle-visibility="mapStore.toggleLayerVisibility()"
+          :layers="mapStore.layers"
+          @toggle-visibility="onToggleVisibility"
+          @remove="onRemoveLayer"
+          @fit="onFitLayer"
+          @fit-all="onFitAll"
+          @clear-all="onClearAll"
         />
 
         <DatasetSelector
           class="mobile-only-selector"
           :datasets="datasets"
-          :selected-slug="mapStore.selectedDatasetSlug"
-          @select="selectDataset"
+          :exclude-slugs="excludeSlugs"
+          @add="onAddLayer"
         />
       </aside>
 
@@ -135,17 +259,16 @@ watch(initialSlug, (slug) => {
         </button>
 
         <MapLoadingIndicator
-          :status="mapStore.featureLoadingStatus"
-          :error-message="mapStore.featureErrorMessage"
-          :visible="mapStore.featureLoadingStatus !== 'idle'"
+          :status="aggregateStatus"
+          :error-message="aggregateError"
+          :visible="aggregateStatus !== 'idle'"
         />
 
         <MapView
           ref="mapRef"
-          :features="features"
-          :bbox="mapStore.selectedDatasetSlug ? datasets.find((d) => d.slug === mapStore.selectedDatasetSlug)?.bbox ?? null : null"
-          :selected-feature-id="mapStore.selectedFeature?.id ?? null"
-          :layer-visible="mapStore.isLayerVisible"
+          :layers="layerDescriptors"
+          :selected-feature="mapStore.selectedFeature"
+          :fit-target="fitTarget"
           @bbox-change="onBboxChange"
           @feature-click="onFeatureClick"
           @map-ready="mapReady = true"
@@ -154,12 +277,12 @@ watch(initialSlug, (slug) => {
         <EmptyState
           v-if="
             mapReady &&
-            mapStore.selectedDatasetSlug &&
-            mapStore.featureLoadingStatus === 'empty'
+            orderedLayers.length > 0 &&
+            aggregateStatus === 'empty'
           "
           class="map-empty"
           title="No features in this view"
-          message="Pan or zoom the map to load features for this dataset."
+          message="Pan or zoom the map to load features for the active layers."
         />
       </section>
 
@@ -167,7 +290,8 @@ watch(initialSlug, (slug) => {
       <aside class="right-panel" aria-label="Selected feature">
         <FeatureDetails
           v-if="mapStore.selectedFeature"
-          :feature="mapStore.selectedFeature"
+          :feature="mapStore.selectedFeature.feature"
+          :dataset-title="datasetTitle(mapStore.selectedFeature.datasetSlug)"
           @zoom="zoomToSelected"
           @close="closeFeature"
         />
@@ -182,10 +306,17 @@ watch(initialSlug, (slug) => {
     <MobileMapDrawer :open="drawerOpen" title="Map layers" @close="drawerOpen = false">
       <LayerPanel
         :datasets="datasets"
-        :selected-slug="mapStore.selectedDatasetSlug"
-        :layer-visible="mapStore.isLayerVisible"
-        @select="selectDataset"
-        @toggle-visibility="mapStore.toggleLayerVisibility()"
+        :layers="mapStore.layers"
+        @toggle-visibility="onToggleVisibility"
+        @remove="onRemoveLayer"
+        @fit="onFitLayer"
+        @fit-all="onFitAll"
+        @clear-all="onClearAll"
+      />
+      <DatasetSelector
+        :datasets="datasets"
+        :exclude-slugs="excludeSlugs"
+        @add="onAddLayer"
       />
     </MobileMapDrawer>
   </div>
@@ -199,7 +330,7 @@ watch(initialSlug, (slug) => {
 }
 .map-grid {
   display: grid;
-  grid-template-columns: 280px 1fr 320px;
+  grid-template-columns: 300px 1fr 320px;
   height: 100%;
   gap: 0;
 }

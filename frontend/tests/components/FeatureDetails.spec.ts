@@ -29,7 +29,7 @@ describe('FeatureDetails', () => {
         feature: {
           ...baseFeature,
           properties: {
-            name: null,
+            name: null as unknown as string,
             status: undefined,
             note: 'some note',
           },
@@ -52,5 +52,14 @@ describe('FeatureDetails', () => {
   it('renders empty state when no feature is selected', () => {
     const wrapper = mount(FeatureDetails, { props: { feature: null } });
     expect(wrapper.text()).toContain('No attributes available');
+  });
+
+  it('renders the dataset title as a layer tag when provided', () => {
+    const wrapper = mount(FeatureDetails, {
+      props: { feature: baseFeature, datasetTitle: 'Hong Kong Fire Stations' },
+    });
+    expect(wrapper.text()).toContain('Hong Kong Fire Stations');
+    // Geometry type tag is replaced by the dataset tag.
+    expect(wrapper.text()).not.toContain('Point');
   });
 });

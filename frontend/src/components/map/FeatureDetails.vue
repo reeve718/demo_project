@@ -5,6 +5,7 @@ import type { GeoFeature } from '../../types';
 
 interface Props {
   feature: GeoFeature | null;
+  datasetTitle?: string;
 }
 const props = defineProps<Props>();
 
@@ -48,7 +49,8 @@ function formatValue(value: unknown): string {
       </button>
     </header>
 
-    <p v-if="geometryType" class="geom">{{ geometryType }}</p>
+    <p v-if="props.datasetTitle" class="layer-tag">{{ props.datasetTitle }}</p>
+    <p v-else-if="geometryType" class="geom">{{ geometryType }}</p>
 
     <p v-if="properties.length === 0" class="empty">No attributes available.</p>
 
@@ -109,6 +111,17 @@ function formatValue(value: unknown): string {
   color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+.layer-tag {
+  display: inline-block;
+  margin: 0;
+  padding: 0.15rem 0.5rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.78rem;
+  border-radius: 4px;
+  font-weight: 500;
+  align-self: flex-start;
 }
 .empty {
   margin: 0;

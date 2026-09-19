@@ -53,6 +53,36 @@ export interface GeoFeature {
   id: string;
   geometry: GeoJSON.Geometry;
   properties: GeoFeatureProperties;
+  /**
+   * Stamped onto each feature after a bbox query so click handlers can
+   * recover which layer it came from. Not part of the original API shape.
+   */
+  datasetSlug?: string;
+}
+
+/**
+ * Per-layer state for the multi-dataset map. One of these is kept per
+ * active dataset slug in the map store.
+ */
+export interface ActiveLayerState {
+  slug: string;
+  title: string;
+  bbox: BboxTuple | null;
+  features: GeoFeature[];
+  visible: boolean;
+  color: string;
+  status: RequestStatus;
+  errorMessage: string;
+}
+
+/**
+ * Click event payload emitted by the map component when a feature is
+ * tapped. Includes the dataset slug so the parent can route the click
+ * into the right store entry.
+ */
+export interface MapFeatureClick {
+  feature: GeoFeature;
+  datasetSlug: string;
 }
 
 export interface GeoFeatureCollection {

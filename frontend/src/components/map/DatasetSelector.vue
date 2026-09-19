@@ -1,27 +1,49 @@
 <script setup lang="ts">
-import type { DatasetDetail } from '../../types';
+import { computed } from 'vue';
+
+import type { DatasetSummary } from '../../types';
 
 interface Props {
-  datasets: DatasetDetail[];
-  selectedSlug: string;
+  datasets: DatasetSummary[];
+  excludeSlugs: string[];
 }
-defineProps<Props>();
-defineEmits<{ (e: 'select', slug: string): void }>();
+const props = defineProps<Props>();
+
+const emit = defineEmits<{
+  (e: 'add', slug: string): void;
+}>();
+
+const candidates = computed(() =>
+  props.datasets.filter((d) => !props.excludeSlugs.includes(d.slug)),
+);
+
+function onChange(event: Event) {
+  const value = (event.target as HTMLSelectElement).value;
+  if (!value) return;
+  emit('add', value);
+  // Reset to the placeholder so the same dataset can be re-selected later.
+  (event.target as HTMLSelectElement).value = '';
+}
 </script>
 
 <template>
-  <div class="selector">
-    <label class="selector-label" for="dataset-selector">Active dataset</label>
+  <div v-if="candidates.length > 0" class="selector">
+    <label class="selector-label" for="dataset-selector">Add a layer</label>
     <select
       id="dataset-selector"
       class="selector-input"
-      :value="selectedSlug"
-      @change="(e) => $emit('select', (e.target as HTMLSelectElement).value)"
+      :value="''"
+      @change="onChange"
     >
-      <option value="" disabled>Choose a dataset…</option>
-      <option v-for="d in datasets" :key="d.slug" :value="d.slug">{{ d.title }}</option>
+      <option value="" disabled>Choose a dataset to add…</option>
+      <option v-for="d in candidates" :key="d.slug" :value="d.slug">
+        {{ d.title }}
+      </option>
     </select>
   </div>
+  <p v-else class="selector-empty">
+    All available datasets are already on the map.
+  </p>
 </template>
 
 <style scoped>
@@ -44,5 +66,14 @@ defineEmits<{ (e: 'select', slug: string): void }>();
   background: #fff;
   font-size: 1rem;
   min-height: 40px;
+}
+.selector-empty {
+  margin: 0;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  background: #f9fafb;
+  border-radius: 6px;
+  text-align: center;
 }
 </style>

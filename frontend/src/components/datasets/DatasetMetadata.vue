@@ -6,10 +6,11 @@ import type { DatasetDetail } from '../../types';
 interface Props {
   dataset: DatasetDetail;
   showBack?: boolean;
+  onMap?: boolean;
 }
-const props = withDefaults(defineProps<Props>(), { showBack: false });
+const props = withDefaults(defineProps<Props>(), { showBack: false, onMap: false });
 
-defineEmits<{ (e: 'back'): void; (e: 'open-in-map'): void }>();
+defineEmits<{ (e: 'back'): void; (e: 'add-to-map'): void }>();
 
 const updatedDate = computed(() => {
   if (!props.dataset.updatedAt) return '';
@@ -76,8 +77,10 @@ const bboxText = computed(() => {
     </section>
 
     <footer class="meta-footer">
-      <button class="primary" type="button" @click="$emit('open-in-map')">
-        Open in Map
+      <button class="primary" type="button" @click="$emit('add-to-map')">
+        <span class="btn-icon" aria-hidden="true">＋</span>
+        <span>Add to Map</span>
+        <span v-if="props.onMap" class="on-map-badge">On map ✓</span>
       </button>
     </footer>
   </article>
@@ -187,9 +190,25 @@ const bboxText = computed(() => {
   cursor: pointer;
   font-weight: 500;
   min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .primary:hover {
   background: #1e40af;
+}
+.btn-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.on-map-badge {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 .link {
   background: transparent;
