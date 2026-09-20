@@ -5,8 +5,10 @@
 > interactive MapLibre map, bbox-driven spatial feature queries, and a fully
 > Dockerised local stack.
 
-**This project is not affiliated with or derived from any government, public
-sector, or commercial GIS system. All data is synthetic.**
+**All datasets are sourced from the [CSDI Portal](https://www.csdi.gov.hk/),
+an open-data service of the Government of the Hong Kong Special Administrative
+Region. See [§13. Data Source and Licence](#13-data-source-and-licence) for
+attribution and the full CSDI Terms of Use.**
 
 ---
 
@@ -56,7 +58,7 @@ Postgres directly.
 |-------|------|
 | Frontend | Vue 3 (Composition API, `<script setup>`), Vite, TypeScript, Vue Router, Pinia, MapLibre GL JS, Vitest, Vue Test Utils, Axios |
 | Backend | NestJS, TypeORM, class-validator, class-transformer, Swagger, Jest, Supertest |
-| Database | PostgreSQL 16 with PostGIS 3.4 (GiST + B-tree + GIN indexes) |
+| Database | PostgreSQL 16 with PostGIS 3 (GiST + B-tree + GIN indexes) |
 | Tooling | Docker Compose, nginx (frontend runtime), Node seed loader |
 
 ---
@@ -234,7 +236,7 @@ db/seed/
     └── <slug>.geojson             ← GeoJSON FeatureCollection per dataset
 ```
 
-To swap in real public data:
+To swap in or add additional public data:
 
 1. Edit [db/seed/manifest.json](db/seed/manifest.json) — list your datasets
    with `slug`, `title`, `description`, `theme`, `publisher`, `license`,
@@ -252,6 +254,13 @@ The loader is idempotent: re-running swaps the data cleanly. Existing
 dataset metadata is updated, and each dataset's features are replaced
 wholesale.
 
+> **If you re-bundle data from the [CSDI Portal](https://www.csdi.gov.hk/)**
+> you must continue to identify the Government and the CSDI Portal as the
+> source of the Data and acknowledge the Government and the relevant
+> organisations' intellectual property rights. Keep the CSDI Terms of Use
+> in the `/about` page if your fork remains publicly accessible. See
+> [§13. Data Source and Licence](#13-data-source-and-licence).
+
 For the full format spec (including which `properties` keys become
 attribute columns on the feature detail panel), see
 [db/seed/README.md](db/seed/README.md).
@@ -265,27 +274,31 @@ attribute columns on the feature detail panel), see
 curl -s http://localhost:3000/api/v1/health | jq
 
 # Search by keyword
-curl -s "http://localhost:3000/api/v1/datasets?q=flood" | jq
+curl -s "http://localhost:3000/api/v1/datasets?q=school" | jq
 
 # Filter by theme, page 2, pageSize 3
-curl -s "http://localhost:3000/api/v1/datasets?theme=Environment&page=2&pageSize=3" | jq
+curl -s "http://localhost:3000/api/v1/datasets?theme=Education&page=1&pageSize=10" | jq
 
 # Dataset detail
-curl -s http://localhost:3000/api/v1/datasets/flood-risk-zones | jq
+curl -s http://localhost:3000/api/v1/datasets/hk-fire-stations | jq
 
-# Features inside a bbox around the demo area
-curl -s "http://localhost:3000/api/v1/datasets/fire-stations/features?minLon=114.05&minLat=22.20&maxLon=114.35&maxLat=22.45&limit=50" | jq
+# Features inside a bbox around Hong Kong
+curl -s "http://localhost:3000/api/v1/datasets/hk-fire-stations/features?minLon=114.05&minLat=22.20&maxLon=114.35&maxLat=22.45&limit=50" | jq
 
 # Invalid bbox (should return 400 with INVALID_BBOX)
-curl -i "http://localhost:3000/api/v1/datasets/fire-stations/features?minLon=200&minLat=22.2&maxLon=114.3&maxLat=22.4"
+curl -i "http://localhost:3000/api/v1/datasets/hk-fire-stations/features?minLon=200&minLat=22.2&maxLon=114.3&maxLat=22.4"
 ```
 
 ---
 
 ## 10. Database and Spatial Query Design
 
-The schema is created by `db/init/01-schema.sql` and seeded by
-`db/init/02-seed-data.sql` (loaded automatically on first DB start).
+The schema is created by `db/init/01-schema.sql` (loaded automatically on
+first DB start). Catalogue rows and feature geometries are loaded by the
+`seed` service from [`db/seed/manifest.json`](db/seed/manifest.json) and the
+matching GeoJSON files under [`db/seed/datasets/`](db/seed/datasets/);
+see [§8a. Adding your own public data](#8a-adding-your-own-public-data)
+for the format.
 
 ### Tables
 
@@ -407,13 +420,70 @@ The grid uses CSS only — no external UI library, no JavaScript-based layout.
 
 ## 13. Data Source and Licence
 
-All data in `db/init/02-seed-data.sql` is **synthetic**. Coordinates fall in
-a small bounding box near Hong Kong (114.0–114.4 lon, 22.2–22.5 lat) purely
-for visualisation convenience. No real-world flood zones, emergency-service
-locations, or public facilities are referenced.
+All datasets bundled with this project are downloaded from the
+[Common Spatial Data Infrastructure (CSDI) Portal](https://www.csdi.gov.hk/),
+an open-data service provided by the **Development Bureau of the Government
+of the Hong Kong Special Administrative Region** (the "Government"). Each
+dataset's `publisher` field in `db/seed/manifest.json` identifies the
+"relevant organisation" that supplied the records (for example, the Hong
+Kong Fire Services Department or the Education Bureau).
 
-Each dataset declares the licence string `Synthetic demo data — not for
-operational use`.
+### Attribution
+
+In compliance with the [CSDI Terms of Use](https://www.csdi.gov.hk/), this
+project:
+
+- Identifies clearly the Government and the CSDI Portal as the source of
+  the Data;
+- Acknowledges the Government and the relevant organisations' ownership of
+  the intellectual property rights in the Data and in all copies thereof
+  (including paper copies, digital copies and copies placed on other
+  websites);
+- Uses the Data on a free-of-charge basis for browsing, downloading,
+  distribution, reproduction, hyperlinking and printing, for both
+  commercial and non-commercial purposes.
+
+Unless otherwise indicated, the Government is the owner of the intellectual
+property rights of all contents available on the CSDI Portal, including but
+not limited to all Data.
+
+### Bundled datasets (current snapshot)
+
+| Slug | Theme | Publisher | Source page on CSDI Portal |
+|------|-------|-----------|----------------------------|
+| `hk-fire-stations` | Public Safety | Hong Kong Fire Services Department | CSDI Portal (search "Fire Stations") |
+| `hk-ambulance-depots` | Public Safety | Hong Kong Fire Services Department | CSDI Portal (search "Ambulance Depots") |
+| `Private-Primary-Schools` | Education | Education Bureau, HK SAR Government | CSDI Portal (search "Private Primary Schools") |
+| `Government-Primary-Schools` | Education | Education Bureau, HK SAR Government | CSDI Portal (search "Government Primary Schools") |
+| `Aided-Primary-Schools` | Education | Education Bureau, HK SAR Government | CSDI Portal (search "Aided Primary Schools") |
+
+The full list of fields, tags, and licence string for each dataset lives in
+[`db/seed/manifest.json`](db/seed/manifest.json).
+
+### Licence string
+
+Each dataset in `manifest.json` declares the licence
+`Open data — see Hong Kong government open-data portal terms` and references
+the CSDI Portal as the data origin. Users of this project must also comply
+with the CSDI Terms of Use when redistributing or republishing the Data.
+
+### Disclaimer and liability
+
+The Data are provided by the Government and the relevant organisations to
+the public on an "as is" and "as available" basis. No statement,
+representation or warranty of any kind (whether express or implied) is
+given by the Government or the relevant organisations in relation to the
+Data (including its accuracy, correctness, completeness, non-infringement,
+reliability, security, timeliness and appropriateness of the use of the
+Data in any particular circumstances). The Government or the relevant
+organisations shall not be liable for any errors, omissions, deficiencies,
+inconsistencies, misstatements or misrepresentations concerning any Data,
+and shall not have or accept any liability, obligation or responsibility
+whatsoever for any loss, destruction or damage howsoever arising from or
+in respect of any use or misuse of or reliance on the Data.
+
+The full CSDI Terms of Use is reproduced inside the application at the
+`/about` page.
 
 ---
 
@@ -442,10 +512,19 @@ operational use`.
 ## 16. Disclaimer
 
 This project is provided as-is for educational and demonstration purposes.
-It is **not** affiliated with, endorsed by, or based on any confidential
-information from any government, public-sector, or commercial GIS system. Do
-not use it to make decisions about real-world geography, public safety, or
-any other consequential matter.
+The datasets come from the [CSDI Portal](https://www.csdi.gov.hk/), an
+official open-data service of the Government of the Hong Kong Special
+Administrative Region, and are used in accordance with the CSDI Terms of
+Use (reproduced on the `/about` page). This project is **not** affiliated
+with, endorsed by, or based on any confidential information from any
+government, public-sector, or commercial GIS system. Do not use it to make
+decisions about real-world geography, public safety, or any other
+consequential matter.
+
+The CSDI Data themselves are provided "as is" and "as available" with no
+warranty of accuracy, completeness, or fitness for any particular purpose,
+and the Government reserves the right to revise, omit, edit, suspend or
+terminate the Data or the CSDI Portal at any time without notice.
 
 ---
 

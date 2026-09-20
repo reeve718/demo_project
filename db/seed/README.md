@@ -4,6 +4,20 @@ This directory is the canonical location for catalogue seed data. The
 `seed` service in `docker compose` reads these files on startup and
 inserts them into the database via parameterised SQL.
 
+## Data provenance and attribution
+
+The bundled GeoJSON files are downloaded from the
+[Common Spatial Data Infrastructure (CSDI) Portal](https://www.csdi.gov.hk/),
+an open-data service of the Government of the Hong Kong Special
+Administrative Region. The CSDI Terms of Use require that any republication
+identify the Government and the CSDI Portal as the source of the Data and
+acknowledge the Government and the relevant organisations' intellectual
+property rights. The bundled `manifest.json` lists the publisher for each
+dataset, and the project `/about` page reproduces the full CSDI Terms of
+Use. If you replace the bundled data with your own, keep the attribution
+fields (`publisher`, `license`) accurate and update the `/about` page if
+you redistribute the result publicly.
+
 ## Files
 
 - `manifest.json` — one file describing every dataset in the catalogue
@@ -73,9 +87,10 @@ Each `datasets/<slug>.geojson` is a standard
   `MultiLineString`, `Polygon`, `MultiPolygon`, `GeometryCollection`.
 - Coordinates must be WGS84 (`EPSG:4326`).
 
-## Replacing the synthetic demo data
+## Replacing or extending the bundled data
 
-To swap in your own public data:
+The bundled GeoJSONs come from the CSDI Portal. To swap in your own
+public data (whether from CSDI or another source):
 
 1. Edit `manifest.json` (or replace with your own).
 2. Drop your GeoJSON files into `datasets/` using the matching `slug`.
@@ -88,7 +103,14 @@ To swap in your own public data:
 The seed service re-runs every time the stack starts, so the database
 will reflect the latest files. The seed is idempotent (uses
 `ON CONFLICT ... DO UPDATE`) — existing dataset metadata is updated and
-features are replaced wholesale.
+features are replaced wholesale. Datasets that are removed from
+`manifest.json` are also removed from the database on the next seed run.
+
+> **Attribution reminder.** If your data originates from the CSDI Portal,
+> keep `publisher` accurate (e.g. `Hong Kong Fire Services Department` or
+> `Education Bureau, Hong Kong SAR Government`) and reference the CSDI
+> Portal as the source. If you redistribute this project, keep the CSDI
+> Terms of Use in the `/about` page.
 
 ## Resetting the catalogue
 

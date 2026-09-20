@@ -55,7 +55,9 @@ watch(
     <header class="page-header">
       <h1>Spatial Dataset Explorer</h1>
       <p class="subtitle">
-        Browse synthetic catalogue entries and open any dataset in the interactive map.
+        Browse open Hong Kong government geospatial datasets from the
+        <a href="https://www.csdi.gov.hk/" target="_blank" rel="noopener noreferrer">CSDI Portal</a>
+        and open any dataset in the interactive map.
       </p>
     </header>
 
@@ -119,6 +121,12 @@ watch(
 .subtitle {
   margin: 0;
   color: #4b5563;
+}
+.subtitle a {
+  color: #1d4ed8;
+}
+.subtitle a:hover {
+  text-decoration: underline;
 }
 .filters {
   display: grid;
