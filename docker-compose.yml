@@ -2,7 +2,10 @@ name: geocatalog-explorer
 
 services:
   db:
-    image: postgis/postgis:16-3.4
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    image: geocatalog-postgis:local
     container_name: geocatalog-db
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-geocatalog}
