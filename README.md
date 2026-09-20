@@ -12,6 +12,17 @@ attribution and the full CSDI Terms of Use.**
 
 ---
 
+## 🚀 Live Demo
+
+A live deployment of this project is available at:
+
+**👉 [https://reevewong.dev](https://reevewong.dev)**
+
+Browse the catalogue, search by keyword or theme, open a dataset's detail
+page, and explore features on the interactive map — no setup required.
+
+---
+
 ## 1. Project Overview
 
 GeoCatalog Explorer demonstrates how to build a maintainable GIS MVP with a
