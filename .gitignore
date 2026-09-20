@@ -42,6 +42,9 @@ backend/dist/
 # Docker
 .docker/
 
+# Superpower
+docs/superpowers
+
 # Misc
 *.swp
 *.bak
